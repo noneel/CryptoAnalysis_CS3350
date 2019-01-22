@@ -30,7 +30,7 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
     private CharCount[] encryptedFrequency = new CharCount[26];
     Map<Character, Character> decryptKey = new HashMap<Character, Character>();
     String encryptedText = "";
-            
+    String sampleText = "";        
     /**
      * Creates new form Project2
      */
@@ -1209,16 +1209,12 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
 
     private void loadSampleTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadSampleTextActionPerformed
         
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("text files", "txt", "text");
         jFileChooser.setFileFilter(filter);
         jFileChooser.showOpenDialog(P_Count);
 
         File file =jFileChooser.getSelectedFile();
-        try {
-            Scanner in= new Scanner(file);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MonoAlphabetCrypto.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        sampleText= file.toString();
     }//GEN-LAST:event_loadSampleTextActionPerformed
 
     /**

@@ -72,10 +72,7 @@
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel8" min="-2" pref="154" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jLabel8" alignment="0" min="-2" pref="154" max="-2" attributes="0"/>
                           <Component id="jScrollPane3" pref="189" max="32767" attributes="0"/>
                       </Group>
                   </Group>
