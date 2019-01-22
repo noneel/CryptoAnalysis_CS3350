@@ -18,7 +18,13 @@ import java.util.concurrent.ConcurrentMap;
 * Description: This is Project #2 for CS2210 it is a GUI of that wraps Factorial and GCD
 */
 import CryptoClasses.CharCount;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.filechooser.FileNameExtensionFilter;
 public class MonoAlphabetCrypto extends javax.swing.JFrame {
     private CharCount[] sampleFrequency = new CharCount[26];
     private CharCount[] encryptedFrequency = new CharCount[26];
@@ -41,12 +47,7 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuBar3 = new javax.swing.JMenuBar();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
+        jFileChooser = new javax.swing.JFileChooser();
         jPanel1 = new javax.swing.JPanel();
         A = new javax.swing.JLabel();
         A_Value = new javax.swing.JTextField();
@@ -137,19 +138,10 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         ReadSample = new javax.swing.JButton();
         Decrypt = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-
-        jMenu1.setText("File");
-        jMenuBar2.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar2.add(jMenu2);
-
-        jMenu3.setText("File");
-        jMenuBar3.add(jMenu3);
-
-        jMenu4.setText("Edit");
-        jMenuBar3.add(jMenu4);
+        MenuBar = new javax.swing.JMenuBar();
+        fileMenu = new javax.swing.JMenu();
+        loadSampleText = new javax.swing.JMenuItem();
+        editMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -864,45 +856,72 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
                 DecryptActionPerformed(evt);
             }
         });
-        setJMenuBar(jMenuBar1);
+
+        fileMenu.setText("File");
+        fileMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fileMenuActionPerformed(evt);
+            }
+        });
+
+        loadSampleText.setText("Load sample text");
+        loadSampleText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadSampleTextActionPerformed(evt);
+            }
+        });
+        fileMenu.add(loadSampleText);
+
+        MenuBar.add(fileMenu);
+
+        editMenu.setText("Edit");
+        MenuBar.add(editMenu);
+
+        setJMenuBar(MenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(ReadSample)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Decrypt, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(212, 212, 212)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 15, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(350, 350, 350)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(ReadSample)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Decrypt, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(15, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3))
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -911,7 +930,7 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ReadSample)
                     .addComponent(Decrypt))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -1184,6 +1203,24 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
         
     }//GEN-LAST:event_DecryptActionPerformed
 
+    private void fileMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileMenuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fileMenuActionPerformed
+
+    private void loadSampleTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadSampleTextActionPerformed
+        
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
+        jFileChooser.setFileFilter(filter);
+        jFileChooser.showOpenDialog(P_Count);
+
+        File file =jFileChooser.getSelectedFile();
+        try {
+            Scanner in= new Scanner(file);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MonoAlphabetCrypto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_loadSampleTextActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1277,6 +1314,7 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
     private javax.swing.JTextField L_Value;
     private javax.swing.JLabel M_Count;
     private javax.swing.JTextField M_Value;
+    private javax.swing.JMenuBar MenuBar;
     private javax.swing.JLabel N_Count;
     private javax.swing.JTextField N_Value;
     private javax.swing.JLabel O_Count;
@@ -1305,19 +1343,16 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
     private javax.swing.JTextField Y_Value;
     private javax.swing.JLabel Z_Count;
     private javax.swing.JTextField Z_Value;
+    private javax.swing.JMenu editMenu;
+    private javax.swing.JMenu fileMenu;
+    private javax.swing.JFileChooser jFileChooser;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JMenuItem loadSampleText;
     // End of variables declaration//GEN-END:variables
 }
