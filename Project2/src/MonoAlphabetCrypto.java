@@ -18,6 +18,7 @@ import java.util.concurrent.ConcurrentMap;
 * Description: This is Project #2 for CS2210 it is a GUI of that wraps Factorial and GCD
 */
 import CryptoClasses.CharCount;
+import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
@@ -25,6 +26,9 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.Highlighter;
 public class MonoAlphabetCrypto extends javax.swing.JFrame {
     private CharCount[] sampleFrequency = new CharCount[26];
     private CharCount[] encryptedFrequency = new CharCount[26];
@@ -938,107 +942,107 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void A_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(A_Value.getText().charAt(0));
     }//GEN-LAST:event_A_ValueActionPerformed
 
     private void B_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(B_Value.getText().charAt(0));
     }//GEN-LAST:event_B_ValueActionPerformed
 
     private void C_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(C_Value.getText().charAt(0));
     }//GEN-LAST:event_C_ValueActionPerformed
 
     private void D_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_D_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(D_Value.getText().charAt(0));
     }//GEN-LAST:event_D_ValueActionPerformed
 
     private void E_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_E_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(E_Value.getText().charAt(0));
     }//GEN-LAST:event_E_ValueActionPerformed
 
     private void J_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_J_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(J_Value.getText().charAt(0));
     }//GEN-LAST:event_J_ValueActionPerformed
 
     private void I_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_I_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(I_Value.getText().charAt(0));
     }//GEN-LAST:event_I_ValueActionPerformed
 
     private void H_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_H_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(H_Value.getText().charAt(0));
     }//GEN-LAST:event_H_ValueActionPerformed
 
     private void G_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_G_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(G_Value.getText().charAt(0));
     }//GEN-LAST:event_G_ValueActionPerformed
 
     private void F_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_F_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(F_Value.getText().charAt(0));
     }//GEN-LAST:event_F_ValueActionPerformed
 
     private void M_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_M_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(M_Value.getText().charAt(0));
     }//GEN-LAST:event_M_ValueActionPerformed
 
     private void L_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(L_Value.getText().charAt(0));
     }//GEN-LAST:event_L_ValueActionPerformed
 
     private void K_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_K_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(K_Value.getText().charAt(0));
     }//GEN-LAST:event_K_ValueActionPerformed
 
     private void Z_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Z_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(Z_Value.getText().charAt(0));
     }//GEN-LAST:event_Z_ValueActionPerformed
 
     private void Y_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Y_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(Y_Value.getText().charAt(0));
     }//GEN-LAST:event_Y_ValueActionPerformed
 
     private void X_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_X_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(X_Value.getText().charAt(0));
     }//GEN-LAST:event_X_ValueActionPerformed
 
     private void W_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_W_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(W_Value.getText().charAt(0));
     }//GEN-LAST:event_W_ValueActionPerformed
 
     private void V_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_V_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(V_Value.getText().charAt(0));
     }//GEN-LAST:event_V_ValueActionPerformed
 
     private void U_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_U_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(U_Value.getText().charAt(0));
     }//GEN-LAST:event_U_ValueActionPerformed
 
     private void T_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_T_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(T_Value.getText().charAt(0));
     }//GEN-LAST:event_T_ValueActionPerformed
 
     private void S_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_S_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(S_Value.getText().charAt(0));
     }//GEN-LAST:event_S_ValueActionPerformed
 
     private void R_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(R_Value.getText().charAt(0));
     }//GEN-LAST:event_R_ValueActionPerformed
 
     private void P_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(P_Value.getText().charAt(0));
     }//GEN-LAST:event_P_ValueActionPerformed
 
     private void O_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_O_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(O_Value.getText().charAt(0));
     }//GEN-LAST:event_O_ValueActionPerformed
 
     private void N_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_N_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(N_Value.getText().charAt(0));
     }//GEN-LAST:event_N_ValueActionPerformed
 
     private void Q_ValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Q_ValueActionPerformed
-        // TODO add your handling code here:
+        highlight(Q_Value.getText().charAt(0));
     }//GEN-LAST:event_Q_ValueActionPerformed
 
     
@@ -1070,6 +1074,24 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
         return input;
     }
     
+    private void highlight(char curChar) {
+      Highlighter h = DecryptedText.getHighlighter();
+      h.removeAllHighlights();
+      String text = DecryptedText.getText().toUpperCase();
+
+      Highlighter.HighlightPainter yellowPainter = new DefaultHighlighter.DefaultHighlightPainter(Color.yellow);
+      
+      for (int j = 0; j < text.length(); j += 1) {
+        char ch = text.charAt(j);
+        if (ch == curChar) {
+            try {
+                h.addHighlight(j, j + 1, yellowPainter/*DefaultHighlighter.DefaultPainter*/);
+                
+            } catch (BadLocationException e) {
+            }
+        }
+      }
+    }
     public void changeTextBox() {
         /*switch(encrypted) {
             case 'A': 
@@ -1109,7 +1131,7 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
     private void ReadSampleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReadSampleActionPerformed
         // TODO add your handling code here:
         
-        String sampleText = SampleText.getText();
+        sampleText += SampleText.getText();
         sampleFrequency = getLetterFrequency(sampleText);
         
         encryptedText = EncryptedText.getText();
@@ -1208,13 +1230,13 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
     }//GEN-LAST:event_fileMenuActionPerformed
 
     private void loadSampleTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadSampleTextActionPerformed
-        
+        sampleText = "";
         FileNameExtensionFilter filter = new FileNameExtensionFilter("text files", "txt", "text");
         jFileChooser.setFileFilter(filter);
         jFileChooser.showOpenDialog(P_Count);
 
         File file =jFileChooser.getSelectedFile();
-        sampleText= file.toString();
+        sampleText += file.toString();
     }//GEN-LAST:event_loadSampleTextActionPerformed
 
     /**
