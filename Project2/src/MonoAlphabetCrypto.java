@@ -33,6 +33,8 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
     private CharCount[] sampleFrequency = new CharCount[26];
     private CharCount[] encryptedFrequency = new CharCount[26];
     Map<Character, Character> decryptKey = new HashMap<Character, Character>();
+    Map<String, Integer> samplePairFrequency = new HashMap<String, Integer>();
+    Map<String, Integer> encryptedPairFrequency = new HashMap<String, Integer>();
     String encryptedText = "";
     String sampleText = "";        
     /**
@@ -142,6 +144,7 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         ReadSample = new javax.swing.JButton();
         Decrypt = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         MenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         loadSampleText = new javax.swing.JMenuItem();
@@ -847,7 +850,7 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
 
         jLabel8.setText("Sample Text");
 
-        ReadSample.setText("Caculate from Sample");
+        ReadSample.setText("Calculate from Sample");
         ReadSample.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ReadSampleActionPerformed(evt);
@@ -858,6 +861,13 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
         Decrypt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DecryptActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Letter Pairs Calculate");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -898,11 +908,9 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 15, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(350, 350, 350)))
+                                .addGap(344, 344, 344)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -911,10 +919,15 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(ReadSample)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Decrypt, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(Decrypt, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Decrypt, ReadSample, jButton1});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -933,7 +946,8 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ReadSample)
-                    .addComponent(Decrypt))
+                    .addComponent(Decrypt)
+                    .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1239,6 +1253,25 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
         sampleText += file.toString();
     }//GEN-LAST:event_loadSampleTextActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Scanner scan = new Scanner(sampleText);
+        while(scan.hasNext()){
+            String word = scan.next();
+            for (int i = 1; i < word.length(); i++) {
+                //maybe rework this to not use a map and use something else
+                String pair= word.substring(i-1, i+1);
+                if(!samplePairFrequency.containsKey(pair)){
+                    samplePairFrequency.put(pair, 1);
+                }
+                else{
+                    int count=samplePairFrequency.get(pair);
+                    samplePairFrequency.replace(pair, count++);
+                    
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1363,6 +1396,7 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
     private javax.swing.JTextField Z_Value;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JButton jButton1;
     private javax.swing.JFileChooser jFileChooser;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
