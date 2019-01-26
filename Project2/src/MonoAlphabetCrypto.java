@@ -18,9 +18,11 @@ import java.util.concurrent.ConcurrentMap;
 * Description: This is Project #2 for CS2210 it is a GUI of that wraps Factorial and GCD
 */
 import CryptoClasses.CharCount;
+import CryptoClasses.CharPairCount;
 import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -32,11 +34,13 @@ import javax.swing.text.Highlighter;
 public class MonoAlphabetCrypto extends javax.swing.JFrame {
     private CharCount[] sampleFrequency = new CharCount[26];
     private CharCount[] encryptedFrequency = new CharCount[26];
-    Map<Character, Character> decryptKey = new HashMap<Character, Character>();
-    Map<String, Integer> samplePairFrequency = new HashMap<String, Integer>();
-    Map<String, Integer> encryptedPairFrequency = new HashMap<String, Integer>();
-    String encryptedText = "";
-    String sampleText = "";        
+    private Map<Character, Character> decryptKey = new HashMap<Character, Character>();
+    private Map<String, CharPairCount> samplePairFrequency = new HashMap<String, CharPairCount>();
+    private Map<String, CharPairCount> encryptedPairFrequency = new HashMap<String, CharPairCount>();
+    private CharPairCount[] encryptedPairs;
+    private CharPairCount[] samplePairs;
+    private String encryptedText = "";
+    private String sampleText = "";        
     /**
      * Creates new form Project2
      */
@@ -144,7 +148,7 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         ReadSample = new javax.swing.JButton();
         Decrypt = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        LetterPairsCalc = new javax.swing.JButton();
         MenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         loadSampleText = new javax.swing.JMenuItem();
@@ -864,10 +868,10 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Letter Pairs Calculate");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        LetterPairsCalc.setText("Letter Pairs Calculate");
+        LetterPairsCalc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                LetterPairsCalcActionPerformed(evt);
             }
         });
 
@@ -921,12 +925,12 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Decrypt, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1)))
+                                .addComponent(LetterPairsCalc)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Decrypt, ReadSample, jButton1});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Decrypt, LetterPairsCalc, ReadSample});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -947,7 +951,7 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ReadSample)
                     .addComponent(Decrypt)
-                    .addComponent(jButton1))
+                    .addComponent(LetterPairsCalc))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1063,7 +1067,7 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
     CharCount[] getLetterFrequency(String text) {
         CharCount letterCount[] = new CharCount[26];
          
-        text = text.toUpperCase();
+        //text = text.toUpperCase();
         
         for(int j = 0; j < 26; j++) {
             letterCount[j] = new CharCount((char)(65 + j));
@@ -1084,6 +1088,10 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
     }
     
     CharCount[] sortCharCount(CharCount[] input) {
+        Arrays.sort(input);
+        return input;
+    }
+    CharPairCount[] sortCharPairCount(CharPairCount[] input) {
         Arrays.sort(input);
         return input;
     }
@@ -1146,9 +1154,11 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         sampleText += SampleText.getText();
+        sampleText = sampleText.toUpperCase();
         sampleFrequency = getLetterFrequency(sampleText);
         
         encryptedText = EncryptedText.getText();
+        encryptedText = encryptedText.toUpperCase();
         encryptedFrequency = getLetterFrequency(encryptedText);
        
         
@@ -1253,24 +1263,75 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
         sampleText += file.toString();
     }//GEN-LAST:event_loadSampleTextActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void LetterPairsCalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LetterPairsCalcActionPerformed
         Scanner scan = new Scanner(sampleText);
+        ArrayList<CharPairCount> samplePairsAL= new ArrayList<CharPairCount>();
+        //CharPairCount[] samplePairs= new CharPairCount[1352];
+        int count=0;
         while(scan.hasNext()){
             String word = scan.next();
             for (int i = 1; i < word.length(); i++) {
                 //maybe rework this to not use a map and use something else
-                String pair= word.substring(i-1, i+1);
-                if(!samplePairFrequency.containsKey(pair)){
-                    samplePairFrequency.put(pair, 1);
-                }
-                else{
-                    int count=samplePairFrequency.get(pair);
-                    samplePairFrequency.replace(pair, count++);
-                    
+                char curChar = word.charAt(i);
+                char prevChar = word.charAt(i-1);
+                //curChar = Character.toUpperCase(curChar);
+                int val1 = (int)curChar;
+                int val2 = (int)prevChar;
+
+                if(val1 >= 65 && val1 <= 95&&val2>=65&&val2<=95) {
+                    String pair=""+prevChar+curChar;
+
+                    if(!samplePairFrequency.containsKey(pair)){
+                        samplePairsAL.add(new CharPairCount(pair));
+                        samplePairsAL.get(count).increment();
+                        samplePairFrequency.put(pair, samplePairsAL.get(count));
+                        count++;
+                    }
+                    else{
+                        samplePairFrequency.get(pair).increment();
+
+                    }
                 }
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        samplePairs = new CharPairCount[samplePairsAL.size()]; 
+        samplePairs =   samplePairsAL.toArray(samplePairs);
+        count=0;
+        ArrayList<CharPairCount> encryptedPairsAL= new ArrayList<CharPairCount>();
+        //CharPairCount[] encryptedPairs= new CharPairCount[1352];
+
+        scan=new Scanner(encryptedText);
+        while(scan.hasNext()){
+            String word = scan.next();
+            for (int i = 1; i < word.length(); i++) {
+                //maybe rework this to not use a map and use something else
+                char curChar = word.charAt(i);
+                char prevChar = word.charAt(i-1);
+                //curChar = Character.toUpperCase(curChar);
+                int val1 = (int)curChar;
+                int val2 = (int)prevChar;
+
+                if(val1 >= 65 && val1 <= 95||val2>=65&&val2<=95) {
+                    String pair=""+prevChar+curChar;
+
+                    if(!encryptedPairFrequency.containsKey(pair)){
+                        encryptedPairsAL.add(new CharPairCount(pair));
+                        encryptedPairsAL.get(count).increment();
+                        encryptedPairFrequency.put(pair, encryptedPairsAL.get(count));
+                        count++;
+                    }
+                    else{
+                        encryptedPairFrequency.get(pair).increment();
+
+                    }
+                }
+            }
+        }
+        encryptedPairs = new CharPairCount[encryptedPairsAL.size()]; 
+        encryptedPairs =   encryptedPairsAL.toArray(samplePairs);
+        sortCharPairCount(encryptedPairs);
+        sortCharPairCount(samplePairs);
+    }//GEN-LAST:event_LetterPairsCalcActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1363,6 +1424,7 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
     private javax.swing.JTextField K_Value;
     private javax.swing.JLabel L_Count;
     private javax.swing.JTextField L_Value;
+    private javax.swing.JButton LetterPairsCalc;
     private javax.swing.JLabel M_Count;
     private javax.swing.JTextField M_Value;
     private javax.swing.JMenuBar MenuBar;
@@ -1396,7 +1458,6 @@ public class MonoAlphabetCrypto extends javax.swing.JFrame {
     private javax.swing.JTextField Z_Value;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
-    private javax.swing.JButton jButton1;
     private javax.swing.JFileChooser jFileChooser;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;

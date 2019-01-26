@@ -85,7 +85,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="Decrypt" linkSize="2" min="-2" pref="142" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton1" linkSize="2" min="-2" max="-2" attributes="0"/>
+                              <Component id="LetterPairsCalc" linkSize="2" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -116,7 +116,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="ReadSample" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Decrypt" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="LetterPairsCalc" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
@@ -1138,12 +1138,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DecryptActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="LetterPairsCalc">
       <Properties>
         <Property name="text" type="java.lang.String" value="Letter Pairs Calculate"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LetterPairsCalcActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
