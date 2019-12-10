@@ -8,7 +8,7 @@ This tool was created with NetBeans (https://netbeans.org/) and uses the JFrame 
 
 To run open the CryptoAnalysis project in NetBeans. Click on CryptoAnalysis in the projet menu and run.
 
-![alt text](CryptoAnalysis/Tool_Screenshot.png)
+![alt text](Preview.png)
 
 Next, paste in sample text to the "Sample Text" box and click "Calculate from Sample" to set a baseline for the letter freqency.
 
